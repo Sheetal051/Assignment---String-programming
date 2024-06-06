@@ -1,19 +1,20 @@
 public class RemoveDuplicates {
     public static void main(String[] args) {
-        String originalString = "hellooooworld";
-        String uniqueString = removeDuplicates(originalString);
-        System.out.println("Original String: " + originalString);
-        System.out.println("String without duplicates: " + uniqueString);
+        String str = "hellooooworld";
+        String result = removeDuplicates(str);
+        System.out.println("Original string: " + str);
+        System.out.println("String without duplicates: " + result);
     }
 
     public static String removeDuplicates(String str) {
-        StringBuilder uniqueStr = new StringBuilder();
+        boolean[] seen = new boolean[256]; // assuming ASCII characters
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < str.length(); i++) {
-            char c = str.charAt(i);
-            if (uniqueStr.indexOf(String.valueOf(c)) == -1) {
-                uniqueStr.append(c);
+            if (!seen[str.charAt(i)]) {
+                result.append(str.charAt(i));
+                seen[str.charAt(i)] = true;
             }
         }
-        return uniqueStr.toString();
+        return result.toString();
     }
 }
